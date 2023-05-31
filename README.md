@@ -1,2 +1,8 @@
 # dtmii
-This repository contains data and code related to the MRR Innovation Lab project "Bundling Innovative Risk Management Technologies to Improve Nutritional Outcomes of Vulnerable Agricultural Households".  Please see the README file for more information and funding acknowledgements.
+This repository contains data and code related to the MRR Innovation Lab project "Bundling Innovative Risk Management Technologies to Improve Nutritional Outcomes of Vulnerable Agricultural Households". 
+
+This study was made possible through the generous support of the American people through the United States Agency for International Development Cooperative Agreement No. AID-OAA-L-12-00001 with the BASIS Feed the Future Innovation Lab. The contents are the responsibility of the authors and should not be construed to represent any official U.S. government determination or policy. Additional financial support was provided by the Consultative Group on International Agriculturla Research through its Special Program on Impact Evaluation. We thank our research managers and teams in both countries–especially Osmund Lupindu and Aniceto Matias–for their excellent contributions to this project. We also thank our survey respondents and our commercial partners who made this work possible.
+
+The project's activities in both countrieswere ruled Exempt under Category 2 by the IRB at the University of California, Davis. Project numbers: 905582-1 (Mozambique), 905584-1 (Tanzania). Tanzania research permits issued by the Tanzanian Commission on Science and Technology, No. 2016-83-NA-2015-272, No. 2017-106-NA-2015-272, and No. 2018-237-NA-2015-272. This RCT was registered in the American Economic Association Registry for randomized controlled trials under trial numbers 2700 and 2702.
+
+For more details on the project, please visit: https://basis.ucdavis.edu/project/bundling-innovative-risk-management-technologies-improve-nutritional-outcomes-africa 
