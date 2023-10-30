@@ -8,16 +8,15 @@ clear all
 set more off
 
 **Set Directories
-global home "home pathway"
+global home "address"
 global dofiles "$home\Replication Scripts"
 global data "$home\Replication Data"
 ** Guide to error codes: http://xkcd.com/1024/
 
 ********************************************************************************
-/* 
-This file combines baseline, midline, and endline data into an ANCOVA and Difference-in-difference dataset.
-
-It also merges in relevant weather data.
+/* This do file appends midline and endline data for impact 
+	regressions and merges in the relevant baseline characteristics for
+	ANCOVA.
 */
 
 global hhchars country district village hh_id treatment_status refid year triad_id
@@ -1480,7 +1479,6 @@ rename (expend_lesp expend_lesp_wo) (expend_lesp_2016 expend_lesp_wo_2016)
 rename (expend_ag_lesp expend_ag_lespPPP expend_ag_withTP_lesp expend_ag_withTP_lespPPP) (expend_ag_lesp_2016 expend_ag_lespPPP_2016 expend_ag_withTP_lesp_2016 expend_ag_withTP_lespPPP_2016)
 save temp_inv16_v2, replace
 
-
 use dtmii_analysis_ancova, clear
 
 **6210 obs (all match!)
@@ -1495,8 +1493,42 @@ save dtmii_analysis_ancova, replace
 
 ********************************************************************************
 ********************************************************************************
+********************************************************************************
+********************************************************************************
+** Merge predicted poverty probabilities based on sps_points
+/*
+Values for Mozambique created in May 2019 using Mozambique’s 2014/15 Inquérito Sobre Orçamento Familiar Survey.
+
+Values for Tanzania created in June 2016 using Tanzania’s 2011/12 Household Budget Survey by Mark Schreiner of Microfinance Risk Management, L.L.C. 
+
+For more information, please visit www.povertyindex.org
+*/
+
+cd "$data"
+use dtmii_analysis_did, clear
+
+**Merge on country and sps_points, keep only the  PPP190_2011 variable (probability of being below $1.90 per day in 2011 PPP dollars)
+
+merge m:1 country sps_points using ppi_moz_tanz, keepusing(PPP190_2011)    /*91 missing values for sps_points, everything else matches*/
+
+rename PPP190_2011 PPP
+	label var PPP "Prob. below $1.90 per day in 2011 PPP dollars"
+
+drop _merge	
+
+save dtmii_analysis_did, replace
 
 
+use dtmii_analysis_ancova, clear
+
+merge m:1 country sps_points using ppi_moz_tanz, keepusing(PPP190_2011)    /*91 missing values for sps_points, everything else matches*/
+
+rename PPP190_2011 PPP
+	label var PPP "Prob. below $1.90 per day in 2011 PPP dollars"
+
+drop _merge
+save dtmii_analysis_ancova, replace
+	
 ********************************************************************************
 * Delete Temp Files
 
