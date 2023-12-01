@@ -1516,6 +1516,8 @@ rename PPP190_2011 PPP
 
 drop _merge	
 
+drop if refid == ""
+
 save dtmii_analysis_did, replace
 
 
@@ -1527,6 +1529,8 @@ rename PPP190_2011 PPP
 	label var PPP "Prob. below $1.90 per day in 2011 PPP dollars"
 
 drop _merge
+drop if refid == ""
+
 save dtmii_analysis_ancova, replace
 	
 ********************************************************************************
