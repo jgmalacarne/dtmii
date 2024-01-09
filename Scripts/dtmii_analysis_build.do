@@ -1513,7 +1513,8 @@ merge m:1 country sps_points using ppi_moz_tanz, keepusing(PPP190_2011)    /*91 
 
 rename PPP190_2011 PPP
 	label var PPP "Prob. below $1.90 per day in 2011 PPP dollars"
-
+	replace PPP = PPP/100 if country == "tanzania"
+	
 drop _merge	
 
 drop if refid == ""
@@ -1527,7 +1528,8 @@ merge m:1 country sps_points using ppi_moz_tanz, keepusing(PPP190_2011)    /*91 
 
 rename PPP190_2011 PPP
 	label var PPP "Prob. below $1.90 per day in 2011 PPP dollars"
-
+	replace PPP = PPP/100 if country == "tanzania"
+	
 drop _merge
 drop if refid == ""
 
