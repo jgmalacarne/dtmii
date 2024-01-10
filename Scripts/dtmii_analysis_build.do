@@ -1521,6 +1521,11 @@ drop if refid == ""
 
 save dtmii_analysis_did, replace
 
+** Set aside baseline values for merging with ANCOVA data
+keep if year == 2016
+keep refid PPP
+rename PPP PPP_2016
+save temp_ppp_2016, replace
 
 use dtmii_analysis_ancova, clear
 
@@ -1531,6 +1536,10 @@ rename PPP190_2011 PPP
 	replace PPP = PPP/100 if country == "tanzania"
 	
 drop _merge
+
+merge m:1 refid using temp_ppp_2016, keepusing(PPP_2016)
+drop _merge
+
 drop if refid == ""
 
 save dtmii_analysis_ancova, replace
